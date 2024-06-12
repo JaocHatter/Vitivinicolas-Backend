@@ -11,8 +11,8 @@ spring:
   datasource:
     url: jdbc:postgresql://dpg-cpkakrcf7o1s73clsqe0-a.oregon-postgres.render.com/storage_db_jewn
     driver-class-name: org.postgresql.Driver
-    username: onemanarmy
-    password: KGWgC0rVDdeTwGk5jHF0PCHL7VvJQgAQ
+    username: fuck you
+    password: fuck you x2
     hikari:
       maximum-pool-size: 5
       minimum-idle: 2
