@@ -1,4 +1,7 @@
 package uni.isw.repository;
 
-public interface ReporteRepository {
+import org.springframework.data.repository.CrudRepository;
+import uni.isw.model.Reporte;
+
+public interface ReporteRepository extends CrudRepository<Reporte, Long>{
 }

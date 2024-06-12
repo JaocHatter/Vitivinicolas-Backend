@@ -1,7 +1,10 @@
 package uni.isw.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
+@Entity
 @Table(name="administradorempresas")
 public class AdministradorEmpresa {
     @Id

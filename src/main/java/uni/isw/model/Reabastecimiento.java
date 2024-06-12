@@ -1,7 +1,10 @@
 package uni.isw.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
+@Entity
 @Table(name="reabastecimiento")
 public class Reabastecimiento{
     @Id
