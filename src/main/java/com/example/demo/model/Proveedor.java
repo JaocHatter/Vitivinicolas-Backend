@@ -9,7 +9,8 @@ import lombok.Data;
 public class Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idProvedor;
+    @Column(name = "id_proveedor")
+    private Long idProveedor;
 
     @Column(name = "nombre_proveedor")
     private String nombreProveedor;
