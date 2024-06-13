@@ -67,8 +67,8 @@ public class ReporteController {
         try{
             Optional<AdministradorEmpresa> adminOpt = administradorEmpresaService.getAdministradorEmpresa(reporte.getAdministradorEmpresa().getIdAdministradorEmpresa());
             Optional<TrabajadorAlmacen> trabajadorOpt = trabajadorAlmacenService.getTrabajadorAlmacen(reporte.getTrabajadorAlmacen().getIdTrabajadorAlmacen());
-            if(!adminOpt.isPresent() && !trabajadorOpt.isPresent()) {
-                logger.error("AdministradorEmpresa no encontrado: " + reporte.getAdministradorEmpresa().getIdAdministradorEmpresa());
+            if(!adminOpt.isPresent() || !trabajadorOpt.isPresent()) {
+                logger.error("AdministradorEmpresa o Trabajador no encontrado: " + reporte.getAdministradorEmpresa().getIdAdministradorEmpresa());
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             }
             reporte.setAdministradorEmpresa(adminOpt.get());
