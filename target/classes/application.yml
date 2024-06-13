@@ -1,0 +1,38 @@
+server:
+  port : ${server_port:8083}
+  servlet:
+    context-path: /adapter-db-workflow
+spring:
+  application:
+    name: adapter-db-workflow
+    environment: dev
+    version: 0.0.1
+
+  datasource:
+    url: jdbc:postgresql://dpg-cpkvjuicn0vc739cb020-a.oregon-postgres.render.com/storage_db_ubxv
+    driver-class-name: org.postgresql.Driver
+    username: onemanarmy
+    password: yvzYTmGmTKb2nsfMbuompKhZ3Vx0GTO4
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      connection-timeout: 10000
+      idle-timeout: 15000
+      max-lifetime: 10000
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: lazy
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    open-in-view: false # should never have transaction open to view ever
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: ${JPA_SHOW_SQL:true}
+    hibernate:
+      ddl-auto: none
+  jackson:
+    date-format: yyyy-MM-dd
+
+
