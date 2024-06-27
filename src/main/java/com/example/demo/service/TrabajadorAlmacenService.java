@@ -21,8 +21,8 @@ public class TrabajadorAlmacenService {
         return trabajadorAlmacenRepository.findById(id);
     }
 
-    public void saveOrUpdate(TrabajadorAlmacen trabajadorAlmacen) {
-        trabajadorAlmacenRepository.save(trabajadorAlmacen);
+    public TrabajadorAlmacen saveOrUpdate(TrabajadorAlmacen trabajadorAlmacen) {
+        return trabajadorAlmacenRepository.save(trabajadorAlmacen);
     }
 
     public void delete(Long id) {

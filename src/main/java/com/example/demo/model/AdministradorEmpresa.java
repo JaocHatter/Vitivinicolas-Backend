@@ -5,6 +5,7 @@ import lombok.*;
 
 @Data
 @Entity
+@Builder
 @Table(name="administrador_empresa")
 public class AdministradorEmpresa {
     @Id
@@ -17,4 +18,13 @@ public class AdministradorEmpresa {
 
     @Column(name = "apellidos_admin", nullable = false)
     private String apellidosAdmin;
+
+    public AdministradorEmpresa() {
+
+    }
+    public AdministradorEmpresa(Long idAdministradorEmpresa, String nombreAdmin, String apellidosAdmin) {
+        this.idAdministradorEmpresa = idAdministradorEmpresa;
+        this.nombreAdmin = nombreAdmin;
+        this.apellidosAdmin = apellidosAdmin;
+    }
 }

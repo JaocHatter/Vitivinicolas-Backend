@@ -16,8 +16,10 @@ public class ProductoService {
     public List<Producto> getProductos() {
         return (List<Producto>) productoRepository.findAll();
     }
-    public Optional<Producto> getProducto(String id) {
+    public Optional<Producto> getProducto(Long id) {
         return productoRepository.findById(id);
     }
-    public void saveOrUpdate(Producto producto){ productoRepository.save(producto); }
+    public Producto saveOrUpdate(Producto producto){ return productoRepository.save(producto); }
+
+    public void deleteProducto(long idProducto) {   productoRepository.deleteById(idProducto);}
 }

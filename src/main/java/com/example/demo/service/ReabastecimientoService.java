@@ -21,8 +21,8 @@ public class ReabastecimientoService {
         return reabastecimientoRepository.findById(id);
     }
 
-    public void saveOrUpdate(Reabastecimiento reabastecimiento) {
-        reabastecimientoRepository.save(reabastecimiento);
+    public Reabastecimiento saveOrUpdate(Reabastecimiento reabastecimiento) {
+        return reabastecimientoRepository.save(reabastecimiento);
     }
 
     public void delete(Long id) {

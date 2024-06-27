@@ -67,8 +67,8 @@ public class ReporteController {
         try{
             Optional<AdministradorEmpresa> adminOpt = administradorEmpresaService.getAdministradorEmpresa(reporte.getAdministradorEmpresa().getIdAdministradorEmpresa());
             Optional<TrabajadorAlmacen> trabajadorOpt = trabajadorAlmacenService.getTrabajadorAlmacen(reporte.getTrabajadorAlmacen().getIdTrabajadorAlmacen());
-            if(!adminOpt.isPresent() && !trabajadorOpt.isPresent()) {
-                logger.error("AdministradorEmpresa no encontrado: " + reporte.getAdministradorEmpresa().getIdAdministradorEmpresa());
+            if(!adminOpt.isPresent() || !trabajadorOpt.isPresent()) {
+                logger.error("AdministradorEmpresa o Trabajador no encontrado: " + reporte.getAdministradorEmpresa().getIdAdministradorEmpresa());
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             }
             reporte.setAdministradorEmpresa(adminOpt.get());
@@ -79,25 +79,6 @@ public class ReporteController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         logger.info("< agregar: " + reporte.toString());
-        return new ResponseEntity<>(reporte, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Reporte> actualizar(@RequestBody Reporte reporte) {
-        logger.info("> actualizar: " + reporte.toString());
-        try{
-            Optional<AdministradorEmpresa> adminOpt = administradorEmpresaService.getAdministradorEmpresa(reporte.getAdministradorEmpresa().getIdAdministradorEmpresa());
-            Optional<TrabajadorAlmacen> trabajadorOpt = trabajadorAlmacenService.getTrabajadorAlmacen(reporte.getTrabajadorAlmacen().getIdTrabajadorAlmacen());
-            if(!adminOpt.isPresent() && !trabajadorOpt.isPresent()) {
-                logger.error("Trabajador no encontrado: " + reporte.getAdministradorEmpresa().getIdAdministradorEmpresa());
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            }
-            reporteService.saveOrUpdate(reporte);
-        } catch (Exception e) {
-            logger.error("Unexpected Exception caught. " + e.getMessage());
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        logger.info("< actualizar: " + reporte.toString());
         return new ResponseEntity<>(reporte, HttpStatus.OK);
     }
 

@@ -19,8 +19,8 @@ public class AdministradorEmpresaService{
     public Optional<AdministradorEmpresa> getAdministradorEmpresa(Long id){
         return administradorEmpresaRepository.findById(id);
     }
-    public void saveOrUpdate(AdministradorEmpresa admin){
-        administradorEmpresaRepository.save(admin);
+    public AdministradorEmpresa saveOrUpdate(AdministradorEmpresa admin){
+        return administradorEmpresaRepository.save(admin);
     }
     public void delete(Long id){
         administradorEmpresaRepository.deleteById(id);

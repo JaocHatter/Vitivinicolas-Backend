@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/administradorempresa")
-public class AdministradorEmpresaController {
+public class AdministradorEmpresaController{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private AdministradorEmpresaService adminService;

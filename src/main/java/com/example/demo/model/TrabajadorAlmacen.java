@@ -1,9 +1,11 @@
 package com.example.demo.model;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
-import com.example.demo.model.AdministradorEmpresa;
+
 @Data
 @Entity
+@Builder
 @Table(name="trabajador_almacen")
 public class TrabajadorAlmacen {
     @Id
@@ -20,4 +22,14 @@ public class TrabajadorAlmacen {
     @ManyToOne
     @JoinColumn(name = "id_administrador_empresa", referencedColumnName = "id_administrador_empresa")
     private AdministradorEmpresa administradorEmpresa;
+
+    public TrabajadorAlmacen() {
+
+    }
+    public TrabajadorAlmacen(Long idTrabajadorAlmacen, String trabajadorNombre, String trabajadorApellidos, AdministradorEmpresa administradorEmpresa) {
+        this.idTrabajadorAlmacen = idTrabajadorAlmacen;
+        this.trabajadorNombre = trabajadorNombre;
+        this.trabajadorApellidos = trabajadorApellidos;
+        this.administradorEmpresa = administradorEmpresa;
+    }
 }

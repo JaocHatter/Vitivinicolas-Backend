@@ -21,8 +21,8 @@ public class ProveedorService {
         return proveedorRepository.findById(id);
     }
 
-    public void saveOrUpdate(Proveedor proveedor) {
-        proveedorRepository.save(proveedor);
+    public Proveedor saveOrUpdate(Proveedor proveedor) {
+        return proveedorRepository.save(proveedor);
     }
 
     public void delete(Long id) {

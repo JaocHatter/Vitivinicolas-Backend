@@ -1,9 +1,11 @@
 package com.example.demo.model;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
+@Builder
 @Table(name="reporte")
 public class Reporte {
     @Id
@@ -22,4 +24,13 @@ public class Reporte {
     @JoinColumn(name = "id_administrador_empresa", referencedColumnName = "id_administrador_empresa")
     private AdministradorEmpresa administradorEmpresa;
 
+    public Reporte() {
+
+    }
+    public Reporte(Long idReporte, TrabajadorAlmacen trabajadorAlmacen, String descripcion, AdministradorEmpresa administradorEmpresa) {
+        this.idReporte = idReporte;
+        this.trabajadorAlmacen = trabajadorAlmacen;
+        this.descripcion = descripcion;
+        this.administradorEmpresa = administradorEmpresa;
+    }
 }

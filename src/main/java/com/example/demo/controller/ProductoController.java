@@ -47,7 +47,7 @@ public class ProductoController {
     public ResponseEntity<Producto> getProducto(@RequestBody Optional<Producto> producto) {
         logger.info("> search " + producto.toString());
         try {
-            producto = productoService.getProducto(producto.get().getNombreProducto());
+            producto = productoService.getProducto(producto.get().getIdProducto());
         } catch (Exception e) {
             logger.error("Unexpected Exception caught.", e);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -73,12 +73,35 @@ public class ProductoController {
     public ResponseEntity<Producto> actualizar(@RequestBody Producto producto) {
         logger.info("> actualizar: " + producto.toString());
         try{
-            productoService.saveOrUpdate(producto);
+            Optional<Producto> prodOpt = productoService.getProducto(producto.getIdProducto());
+            if(!prodOpt.isPresent()){
+                logger.error("No puedes actualizar un producto que no existe! : " + producto.getNombreProducto());
+            }
+            Producto productoExistente = prodOpt.get();
+            productoExistente.setStockProducto(productoExistente.getStockProducto()+producto.getStockProducto());
+            productoService.saveOrUpdate(productoExistente);
         } catch (Exception e) {
             logger.error("Unexpected Exception caught. " + e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         logger.info("< actualizar: " + producto.toString());
+        return new ResponseEntity<>(producto, HttpStatus.OK);
+    }
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Producto> eliminar(@RequestBody Producto producto) {
+        logger.info("> eliminar: " + producto.toString());
+        try {
+            Optional<Producto> prodOpt = productoService.getProducto(producto.getIdProducto());
+            if (!prodOpt.isPresent()) {
+                logger.error("No puedes eliminar un producto que no existe! : " + producto.getNombreProducto());
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+            productoService.deleteProducto(producto.getIdProducto());
+        } catch (Exception e) {
+            logger.error("Unexpected Exception caught. " + e.getMessage());
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        logger.info("< eliminar: " + producto.toString());
         return new ResponseEntity<>(producto, HttpStatus.OK);
     }
 }
