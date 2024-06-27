@@ -12,7 +12,7 @@ spring:
     url: jdbc:postgresql://dpg-cpu6pnbqf0us73cc6j6g-a.oregon-postgres.render.com:5432/almacen_db
     driver-class-name: org.postgresql.Driver
     username: almacen_db_user
-    password: QIw9wyWTXwWeTQ78E1ARMq27RADUqtoA
+    password: 
     hikari:
       maximum-pool-size: 5
       minimum-idle: 2
