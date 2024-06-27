@@ -43,7 +43,7 @@ public class ProveedorController {
     public ResponseEntity<Proveedor> getProveedor(@RequestBody Optional<Proveedor> proveedor) {
         logger.info("> search " + proveedor.toString());
         try {
-            proveedor = proveedorService.getProveedor(proveedor.get().getIdProveedor());
+            proveedor = proveedorService.getProveedor(proveedor.get().getIdProvedor());
         } catch (Exception e) {
             logger.error("Unexpected Exception caught.", e);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -82,9 +82,9 @@ public class ProveedorController {
     public ResponseEntity<Proveedor> delete(@RequestBody Optional<Proveedor> proveedor) {
         logger.info("> eliminar: " + proveedor.toString());
         try {
-            proveedor = proveedorService.getProveedor(proveedor.get().getIdProveedor());
+            proveedor = proveedorService.getProveedor(proveedor.get().getIdProvedor());
             if (proveedor.isPresent()) {
-                proveedorService.delete(proveedor.get().getIdProveedor());
+                proveedorService.delete(proveedor.get().getIdProvedor());
             }
         } catch (Exception e) {
             logger.error("Unexpected Exception caught. " + e.getMessage());

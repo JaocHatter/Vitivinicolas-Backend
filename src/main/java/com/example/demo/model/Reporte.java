@@ -21,4 +21,5 @@ public class Reporte {
     @ManyToOne
     @JoinColumn(name = "id_administrador_empresa", referencedColumnName = "id_administrador_empresa")
     private AdministradorEmpresa administradorEmpresa;
+
 }

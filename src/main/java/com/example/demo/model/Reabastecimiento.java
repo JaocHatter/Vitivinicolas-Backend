@@ -9,7 +9,6 @@ import lombok.Data;
 public class Reabastecimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_reabastecimiento")
     private Long idReabastecimiento;
 
     @Column(name = "fecha_reabastecimiento")

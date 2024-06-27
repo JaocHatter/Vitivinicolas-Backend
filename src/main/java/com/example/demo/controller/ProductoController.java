@@ -73,13 +73,7 @@ public class ProductoController {
     public ResponseEntity<Producto> actualizar(@RequestBody Producto producto) {
         logger.info("> actualizar: " + producto.toString());
         try{
-            Optional<Producto> prodOpt = productoService.getProducto(producto.getNombreProducto());
-            if(!prodOpt.isPresent()){
-                logger.error("No puedes actualizar un producto que no existe! : " + producto.getNombreProducto());
-            }
-            Producto productoExistente = prodOpt.get();
-            productoExistente.setStockProducto(productoExistente.getStockProducto()+producto.getStockProducto());
-            productoService.saveOrUpdate(productoExistente);
+            productoService.saveOrUpdate(producto);
         } catch (Exception e) {
             logger.error("Unexpected Exception caught. " + e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

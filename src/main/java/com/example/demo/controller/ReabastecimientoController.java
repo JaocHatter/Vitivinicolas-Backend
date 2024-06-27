@@ -1,12 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.AdministradorEmpresa;
-import com.example.demo.model.Producto;
-import com.example.demo.model.Proveedor;
 import com.example.demo.model.Reabastecimiento;
-import com.example.demo.service.AdministradorEmpresaService;
-import com.example.demo.service.ProductoService;
-import com.example.demo.service.ProveedorService;
 import com.example.demo.service.ReabastecimientoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +23,6 @@ public class ReabastecimientoController {
 
     @Autowired
     private ReabastecimientoService reabastecimientoService;
-    @Autowired
-    private ProductoService productoService;
-    @Autowired
-    private ProveedorService proveedorService;
 
     @RequestMapping(value = "/listar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Reabastecimiento>> getReabastecimientos() {
@@ -67,12 +57,6 @@ public class ReabastecimientoController {
     public ResponseEntity<Reabastecimiento> agregar(@RequestBody Reabastecimiento reabastecimiento) {
         logger.info("> agregar: " + reabastecimiento.toString());
         try {
-            Optional<Proveedor> provOpt = proveedorService.getProveedor(reabastecimiento.getProveedor().getIdProveedor());
-            Optional<Producto> prodOpt = productoService.getProducto(reabastecimiento.getProducto().getNombreProducto());
-            if (!provOpt.isPresent() || !prodOpt.isPresent()){
-                logger.error("Se necesita un proveedor y producto existente para solicitar un Reabastecimiento: " + reabastecimiento.getProveedor().getIdProveedor());
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            }
             reabastecimientoService.saveOrUpdate(reabastecimiento);
         } catch (Exception e) {
             logger.error("Unexpected Exception caught. " + e.getMessage());
